@@ -41,8 +41,7 @@ export default {
 
     this.letter = anime({
       targets: '.letter',
-      backgroundColor: ['#fff', '#000'],
-      translateY: 50
+      
     })
   }
 }
