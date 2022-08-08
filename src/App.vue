@@ -1,16 +1,23 @@
 <template>
   <div id="app">
-    <h1>
+    <!-- <h1>
       <span class="letter">h</span>
       <span class="letter">e</span>
       <span class="letter">l</span>
       <span class="letter">l</span>
       <span class="letter">o</span>
-    </h1>
+    </h1> -->
     <button @click="start">start</button>
     <button @click="pause">pause</button>
-    <div class="wrapper d-none">
+    <div class="wrapper">
       <div class="item"></div>
+      <h1>
+        <span class="letter pa-1">h</span>
+        <span class="letter pa-1">e</span>
+        <span class="letter pa-1">l</span>
+        <span class="letter pa-1">l</span>
+        <span class="letter pa-1">o</span>
+      </h1>
     </div>
     <br />
   </div>
@@ -38,26 +45,27 @@ export default {
     //   backgroundColor: ["#f0a", "#af0", "#f0a"],
     //   scale: [1, 2, 1],
     // });
-    this.animation = anime({
-      targets: ".letter",
-      top: 0,
-      left: 0,
-      opacity: 1,
-      translateX: [0, 50],
-      translateY: [90, 180],
-      rotate: {
-        value: 720,
-        duration: 2000,
-        easing: "easeOutExpo",
-      },
-      scale: anime.stagger([1, 2, 1, 2, 1, 2], { from: "center" }),
-      delay: anime.stagger(1000, { start: 0 }),
-      loop: true,
-    });
+    // this.animation = anime({
+    //   targets: ".letter",
+    //   color: ["#ff0", "#0ff", "#ff0"],
+    //   top: 0,
+    //   left: 0,
+    //   opacity: 1,
+    //   translateX: [0, 10],
+    //   translateY: [0, 150],
+    //   rotate: {
+    //     value: 1080,
+    //     duration: 2000,
+    //     easing: "easeOutExpo",
+    //   },
+    //   scale: anime.stagger([1, 2, 1], { from: "center" }),
+    //   delay: anime.stagger(1000, { start: 0 }),
+    //   loop: true,
+    // });
 
     this.timeline = anime.timeline({
       easing: "easeOutExpo",
-      duration: 750,
+      duration: 1500,
       loop: true,
     });
 
@@ -68,15 +76,45 @@ export default {
         translateY: [0, 250, 450, 250, 0],
         translateX: [0, 250, 450, 250, 0],
         rotate: [0, 180, 0, 180, 0],
+        opacity: 1,
         duration: 3500,
         scale: [1, 4, 1, 4, 1],
+        easing: 'cubicBezier(.35,.94,.61,.27)',
         loop: true,
       })
       .add({
         targets: ".item",
-        translateX: [0, 250, 0],
+        translateX: [250],
+        opacity: 1,
         backgroundColor: ["#f0a", "#a0f", "#f0a"],
         duration: 1500,
+        easing: 'cubicBezier(.35,.94,.61,.27)'
+      })
+      .add({
+        targets: ".letter",
+        color: ["#ff0", "#0ff", "#ff0"],
+        top: 0,
+        left: 0,
+        opacity: 1,
+        translateX: [0, 10],
+        translateY: [0, 150],
+        rotate: {
+          value: 1080,
+          duration: 2000,
+          easing: "easeOutExpo",
+        },
+        scale: anime.stagger([1, 2, 1], { from: "center" }),
+        delay: anime.stagger(1000, { start: 0 }),
+        loop: true,
+      })
+      .add({
+        targets: ".item",
+        translateX: [0],
+        translateY: [0, 250, 0],
+        opacity: 1,
+        backgroundColor: ["#f0a", "#a0f", "#f0a"],
+        duration: 4000,
+        easing: 'cubicBezier(.35,.94,.61,.27)'
       });
   },
 };
@@ -87,11 +125,13 @@ export default {
   display: inline-block;
   opacity: 0;
   top: 0;
-  left: 0
-
+  left: 0;
 }
 .d-none {
   display: none;
+}
+.pa-1 {
+  padding: 15px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
